@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# coding:utf-8
+
+import sys
+
+def replace(FILE):
+  f = open(FILE)
+  for line in f:
+    result = line.replace('\t', ' ')
+    sys.stdout.write(result)
+  
+if __name__ == '__main__':
+  replace(sys.argv[1])
