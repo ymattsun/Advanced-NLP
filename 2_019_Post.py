@@ -3,31 +3,24 @@
 
 import sys, re
 
-def Post_Number(FILE):
-  from collections import defaultdict
+#!/usr/bin/env python
+# coding:utf-8
 
-  Post_Number = defaultdict(lambda: [])
+import sys, re
+
+def post_pref_town(FILE):
+  post_num, pref_name, town_name = [], [], []
   for line in open(FILE):
-    #line = line.strip().decode('utf-8')
-    #cols = line.split()
-    #if len(cols) != 2:
-    #  continue
-    #glb, loc = cols
-    #if u'[0-9]-[0-9]' in glb:
-    #  pref, zone = glb.split(u'[0-9]-[0-9]')
-
-  return Post_Number
-
-def pref_name(FILE):
+    line = line.strip().decode('utf-8')
+    cols = line.split()
+    if ur'([0-9]+)-([0-9]+)' in cols:
+      post_num.append(cols)
+    if ur'都|道|府|県|' in cols:
+      pref_name.append(cols)
+    if ur'区|市|町|村|郡' in cols:
+      town_name.append(cols)
   
-
-
-
-def town_name(FILE):
-
-
+  post_pref_town_name = post_num + pref_name + town_name
 
 if __name__ == '__main__':
-  #adrDict = Post_Number(sys.argv[2])
-  #for line in open(sys.argv[1]):
-  #  line = line.strip().decode('utf-8')
+  post_pref_town(sys.argv[1])
