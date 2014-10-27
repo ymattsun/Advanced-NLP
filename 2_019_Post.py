@@ -3,11 +3,6 @@
 
 import sys, re
 
-#!/usr/bin/env python
-# coding:utf-8
-
-import sys, re
-
 def post_pref_town(FILE):
   post_num, pref_name, town_name = [], [], []
   for line in open(FILE):
