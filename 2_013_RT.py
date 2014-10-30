@@ -10,7 +10,6 @@ def RT(FILE):
     line = line.decode('utf-8')
     if RTcomment.match(line):
       print RTcomment.sub('', line).encode('utf-8')
-  f.close()
 
 if __name__ == '__main__':
   RT(sys.argv[1])
