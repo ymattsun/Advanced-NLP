@@ -9,7 +9,6 @@ def NOW(FILE):
     line = line.strip().decode('utf-8')
     if line[-2:] == u'なう':
       sys.stdout.write('%s\n' % line.encode('utf-8'))
-  f.close()
 
 if __name__ == '__main__':
   NOW(sys.argv[1])
