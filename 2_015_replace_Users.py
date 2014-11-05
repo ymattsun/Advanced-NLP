@@ -4,13 +4,12 @@
 import re, sys
 
 def replace_Users(FILE):
-  f = open(FILE)
-  user_Re = re.compile(r'(@([a-zA-Z0-9_]+)):')
-  return [ user_Re.sub(r'<a href="https://twitter.com/#!/\2">\1</a>', line)\
-           for line in f ]
-  f.close()
+  user_re = re.compile(r'(@([a-zA-Z0-9_]+))')
+  user_link =  [ user_re.sub(r'<a href="https://twitter.com/#!/\2">\1</a>', line)\
+                 for line in open(FILE) ]
+
+  for line in user_link:
+    print line
 
 if __name__ == '__main__':
-  replaced = replace_Users(sys.argv[1])
-  for line in replaced:
-    print line
+  replace_Users(sys.argv[1])
