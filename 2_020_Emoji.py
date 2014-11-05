@@ -3,19 +3,13 @@
 
 import sys, re
 
-def emoji(file_line):
-  left_parts = re.compile(ur'([\]*)([(]*)')
-  face_parts = re.compile(ur'([一-龠]+)[^\"!?<>+#$%&~|][a-zA-Z0-9]')
-  right_parts = re.compile(ur'([)]*)([/]*)')
-  
-  kaomoji = left_parts + face_parts + right_parts
-  result = kaomoji.search(file_line)
-  if result != None:
-    return result.groups()
+def emoji(FILE):
+  parts = re.compile(ur'(\\)*(\()+[^0-9A-Za-zぁ-ヶ一-龠]+?(\))+(\/)*')
+
+  for line in open(FILE):
+    kaomoji = parts.search(line)
+    if kaomoji:
+      print kaomoji.group(0)
 
 if __name__ == '__main__':
-  for line in open(sys.argv[1]):
-    line = line.strip().decode('utf-8')
-    emoji_groups = emoji(line)
-    if emoji_groups != None:
-      print emoji_groups
+  emoji(sys.argv[1])
