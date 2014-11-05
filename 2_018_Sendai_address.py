@@ -11,7 +11,8 @@ def sendai_address(address_FILE):
     if u'仙台市' in cols:
       sendai_add.append(cols)
 
-  print sendai_add
+  if len(sendai_add) != 0:
+    print sendai_add
 
 if __name__ == '__main__':
   sendai_address(sys.argv[1])
