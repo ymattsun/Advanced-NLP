@@ -9,7 +9,7 @@ def noun_sahen(FILE):
     if line != 'EOS':
       mecab_list = re.split(r'\t|,', line)
       if mecab_list[2] == 'サ変接続':
-        print mecab_list[2] + mecab_list[0]
+        print mecab_list[2] + 'は「' + mecab_list[0] + '」です'
 
 if __name__ == '__main__':
   noun_sahen(sys.argv[1])
