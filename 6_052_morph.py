@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import sys, re
+
 class Morph:
   def __init__(self, surface, base, pos, pos1):
     self.surface = surface
@@ -9,7 +11,6 @@ class Morph:
     self.pos1 = pos1
 
 def morph(FILE):
-  import sys, re
 
   all_sentence = []
   one_sentence = []
@@ -23,7 +24,6 @@ def morph(FILE):
     elif 'EOS' in line:
       for item in one_sentence:
         print 'surface = %s \t base = %s \t pos = %s \t pos1 = %s' % (item.surface, item.base, item.pos, item.pos1)
-
       all_sentence.append(one_sentence)
       print 'EOS'
       one_sentence = []
