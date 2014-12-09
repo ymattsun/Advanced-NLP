@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import sys, re
 from collections import defaultdict
 
 class Morph:
@@ -17,8 +18,7 @@ class Chunk:
     self.dst = dst
     self.src = src
 
-def chunk():
-  import sys, re
+def chunk(FILE): 
 
   one_sentence = []
   all_sentence = []
@@ -37,9 +37,9 @@ def chunk():
       line = line.strip()
       morph_item = re.split(r'\t|,', line)
       one_chunk.morphs.append(Morph(morph_item[0], morph_item[7], morph_item[1], morph_item[2]))
-
+    
     elif 'EOS' in line:
-      for one_chunk in one_sentence:
+      for one_chunk in one_sentence: 
         one_chunk.src = relate_dict[one_chunk.num]
         for morphs in one_chunk.morphs:
           print 'surface = %s \t base = %s \t pos = %s' % (morphs.surface, morphs.base, morphs.pos)
