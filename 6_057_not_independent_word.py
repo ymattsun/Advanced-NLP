@@ -6,7 +6,7 @@ from module import *
 
 def not_independent(FILE):
   chunk_list = module(FILE)
-  f = open('not_independent.txt', 'w')
+  #f = open('not_independent.txt', 'w')
 
   for chunk in chunk_list:
     for i in range(len(chunk)):
@@ -33,9 +33,9 @@ def not_independent(FILE):
           continue
 
         print noun + '\t' + verb + '\n'
-        f.write(noun + '\t' + verb + '\n')
+        #f.write(noun + '\t' + verb + '\n')
 
-  f.close()
+  #f.close()
 
 if __name__ == '__main__':
   not_independent(sys.argv[1])
