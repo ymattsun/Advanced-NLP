@@ -12,11 +12,11 @@ class Morph:
     self.pos1 = pos1
 
 class Chunk:
-  def __init__(self, num, morphs, dst, src):
+  def __init__(self, num, morphs, dst, srcs):
     self.num = num
     self.morphs = morphs
     self.dst = dst
-    self.src = src
+    self.srcs = srcs
 
 def chunk(FILE): 
 
