@@ -13,11 +13,11 @@ def module(FILE):
       self.pos1 = pos1
 
   class Chunk:
-    def __init__(self, num, morphs, dst, src):
+    def __init__(self, num, morphs, dst, srcs):
       self.num = num
       self.morphs = morphs
       self.dst = dst
-      self.src = src
+      self.srcs = srcs
 
   one_sentence = []
   all_sentence = []
@@ -40,15 +40,12 @@ def module(FILE):
     elif 'EOS' in line:
       for one_chunk in one_sentence: 
         one_chunk.src = relate_dict[one_chunk.num]
-        for morphs in one_chunk.morphs:
-          print 'surface = %s \t base = %s \t pos = %s' % (morphs.surface, morphs.base, morphs.pos)
-
-        print 'num = %s \t dst = %s \t src = %s' % (one_chunk.num, one_chunk.dst, one_chunk.src)
  
       all_sentence.append(one_sentence)
-      print 'EOS'
       one_sentence = []
       relate_dict = defaultdict(list)
+  
+  return all_sentence    
 
 if __name__ == '__main__':
   module(sys.argv[1])
