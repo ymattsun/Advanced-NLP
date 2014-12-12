@@ -4,38 +4,24 @@
 import sys, re
 from module import *
 
-def not_independent(FILE):
+def more_than_2_phrase(FILE):
   chunk_list = module(FILE)
-  f = open('not_independent.txt', 'w')
 
   for chunk in chunk_list:
     for i in range(len(chunk)):
-      if chunk[i].dst != '-1':
-        noun, verb = '', ''
-        noun_check, verb_check = 0, 0
-
-        for j1 in chunk[i].morphs:
-          if j1.surface != '、 ' and j1.surface != '。 ':
-            noun += j1.surface
-          if j1.pos == '名詞' and j1.pos1 != '非自立':
-            noun_check = 1
-
-        if noun_check == 0:
-          continue 
-
-        for j2 in chunk[int(chunk[i].dst)].morphs:
-          if j2.surface != '、 ' and j1.surface != '。 ':
-            verb += j2.surface
-          if j1.pos == '動詞' and j2.pos1 != '非自立':
-            verb_check = 1
-
-        if verb_check == 0:
-          continue
-
-        print noun + '\t' + verb + '\n'
-        f.write(noun + '\t' + verb + '\n')
-
-  f.close()
+      if len(chunk[i].srcs) >= 2:
+        print chunk[i].srcs
+        saki = ''
+        
+        for j in chunk[i].morphs:
+          saki += j.surface
+        print saki + '\n'
+          
+        for src in chunk[i].srcs:
+          moto = ''
+          for k in chunk[int(src)].morphs:
+            moto += k.surface
+          print moto
 
 if __name__ == '__main__':
-  not_independent(sys.argv[1])
+  more_than_2_phrase(sys.argv[1])
